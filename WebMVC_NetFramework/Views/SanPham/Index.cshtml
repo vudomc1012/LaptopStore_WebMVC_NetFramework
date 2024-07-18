@@ -9,6 +9,12 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+<form asp-controller="SanPhamController" asp-action="Index">
+    <p>
+        Tìm kiếm: <input type="text" name="SearchString" />
+        <input type="submit" value="Tìm" />
+    </p>
+</form>
 <table class="table">
     <tr>
         <th>
@@ -23,23 +29,26 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.IDDanhMuc)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TenSanPham)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MoTa)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.IDSanPham }) |
-            @Html.ActionLink("Details", "Details", new { id=item.IDSanPham }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.IDSanPham })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+
+        <tr>
+
+            <td>
+                @(item.DanhMucSanPham==null?"":item.DanhMucSanPham.TenDanhMuc)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TenSanPham)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MoTa)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.IDSanPham }) |
+                @Html.ActionLink("Details", "Details", new { id = item.IDSanPham }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.IDSanPham })
+            </td>
+        </tr>
+    }
 
 </table>

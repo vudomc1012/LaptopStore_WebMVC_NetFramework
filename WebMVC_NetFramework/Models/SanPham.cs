@@ -16,8 +16,8 @@
         }
 
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+       
         public int IDSanPham { get; set; }
         [Display(Name = "Danh Mục")]
         public int? IDDanhMuc { get; set; }

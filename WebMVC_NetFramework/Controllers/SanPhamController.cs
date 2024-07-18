@@ -9,9 +9,11 @@ namespace WebMVC_NetFramework.Controllers
 {
     public class SanPhamController : Controller
     {
+        
         // GET: SanPham
-        public ActionResult Index()          
+        public ActionResult Index(string SearchText = "")          
         {
+
             var lstSanPham = new DBSanPhamContext().SanPhams.ToList();
             return View(lstSanPham);
         }
@@ -26,8 +28,8 @@ namespace WebMVC_NetFramework.Controllers
         public ActionResult Create()
         {
             var context = new DBSanPhamContext();
-            var idDanhMucSelect = new SelectList(context.DanhMucSanPhams, "IDDanhMuc");
-            ViewBag.IDDanhMuc = idDanhMucSelect;
+            var danhMucSelect = new SelectList(context.DanhMucSanPhams, "IDDanhMuc", "TenDanhMuc");
+            ViewBag.IDDanhMuc = danhMucSelect;
             return View();          
         }
 
@@ -35,10 +37,12 @@ namespace WebMVC_NetFramework.Controllers
         [HttpPost]
         public ActionResult Create(SanPham model)
         {
+            // TODO: Add insert logic here
+           
             try
             {
-                // TODO: Add insert logic here
                 var context = new DBSanPhamContext();
+
                 context.SanPhams.Add(model);
                 context.SaveChanges();
                 return RedirectToAction("Index");
@@ -93,5 +97,7 @@ namespace WebMVC_NetFramework.Controllers
                 return View();
             }
         }
+
+
     }
 }
